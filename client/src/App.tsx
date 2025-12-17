@@ -1,11 +1,15 @@
-import Navbar from "./components/Navbar.tsx";
+import Homepage from "./views/Homepage.tsx";
+import ChatPage from "./views/ChatPage.tsx";
+import { BrowserRouter, Routes, Route } from "react-router";
+
 function App() {
   return (
-    <>
-      <Navbar />
-
-      <div className="h-screen bg-gray-100">App</div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/chat" element={<ChatPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
