@@ -23,9 +23,9 @@ function Button({
 }: ButtonProps) {
   const variantClass =
     btnVariant === "primary"
-      ? "bg-violet-600 hover:bg-violet-700 text-white"
+      ? "border border-transparent bg-violet-600 hover:bg-violet-700 text-white"
       : btnVariant === "secondary"
-      ? "border border-gray-300 hover:border-gray-400 text-gray-700"
+      ? "border border-pink-300 hover:border-pink-400 text-pink-500"
       : "bg-slate-200 text-slate-900 hover:bg-slate-300";
 
   const sizeClass =

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import ChatImg from "./../assets/home-images/chat-img.png";
 import Button from "./../components/Button";
+import BrandLogo from "./../components/BrandLogo";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -8,16 +9,9 @@ function Homepage() {
   return (
     <>
       <section className="min-h-screen bg-gray-50 px-6 py-8">
-        <div className="max-w-6xl mx-auto mb-12 flex items-center gap-3">
-          <img
-            src="/re-link-logo.svg"
-            alt="ReLink Logo"
-            className="h-14 w-14 object-contain"
-          />
-          <span className="text-3xl font-semibold text-gray-900">ReLink</span>
-        </div>
+        <BrandLogo />
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+        <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-14 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               Reconnect through{" "}
