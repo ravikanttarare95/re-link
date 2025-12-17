@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
 import ChatImg from "./../assets/home-images/chat-img.png";
-import { Link } from "react-router";
+import Button from "./../components/Button";
 
 function Homepage() {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="min-h-screen bg-gray-50 px-6 py-8">
@@ -27,12 +30,15 @@ function Homepage() {
             </p>
 
             <div className="flex gap-4 pt-2">
-              <Link
-                to={"/authenticate"}
-                className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg font-medium shadow-md transition"
-              >
-                Get Started
-              </Link>
+              <Button
+                type={"button"}
+                btnTitle={"Get Started"}
+                btnVariant={"primary"}
+                size="lg"
+                onBtnClick={() => {
+                  navigate("/authenticate");
+                }}
+              />
             </div>
           </div>
 
