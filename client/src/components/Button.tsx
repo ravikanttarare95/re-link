@@ -10,6 +10,7 @@ interface ButtonProps {
   onBtnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   btnVariant?: ButtonVariant;
   customStyle?: String;
+  isDisabled?: boolean;
   size?: ButtonSize;
 }
 
@@ -19,6 +20,7 @@ function Button({
   onBtnClick,
   btnVariant,
   customStyle = "",
+  isDisabled,
   size = "md",
 }: ButtonProps) {
   const variantClass =
@@ -40,6 +42,7 @@ function Button({
       type={type}
       className={`${customStyle} ${sizeClass} ${variantClass} cursor-pointer transition-all duration-300`}
       onClick={onBtnClick}
+      disabled={isDisabled}
     >
       {btnTitle}
     </button>
