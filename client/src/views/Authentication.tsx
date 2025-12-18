@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "./../components/Button";
 import BrandLogo from "./../components/BrandLogo";
-
-type AuthView = "login" | "signup";
+import AuthPanelContent from "./../components/authentication/AuthPanelContent";
+import { authPanelContent } from "./../constants/authentication/authPanelContent.ts";
+import { type AuthView } from "./../constants/authentication/authPanelContent.ts";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
@@ -14,23 +15,10 @@ function Authentication() {
       <div className="flex rounded-3xl shadow-2xl overflow-hidden bg-white max-w-3xl w-full">
         <div className="hidden md:flex w-80 bg-linear-to-t from-violet-400 to-pink-400 text-white p-8 items-center justify-center">
           <div className="space-y-4 text-center">
-            {activeView === "login" && (
-              <>
-                <h2 className="text-3xl font-bold">Welcome Back</h2>
-                <p className="text-sm opacity-90">
-                  Login to continue your journey
-                </p>
-              </>
-            )}
-
-            {activeView === "signup" && (
-              <>
-                <h2 className="text-3xl font-bold">Create Account</h2>
-                <p className="text-sm opacity-90">
-                  Sign up to get started with ReLink
-                </p>
-              </>
-            )}
+            <AuthPanelContent
+              title={authPanelContent[activeView].title}
+              subtitle={authPanelContent[activeView].subtitle}
+            />
           </div>
         </div>
 
@@ -41,6 +29,7 @@ function Authentication() {
               btnTitle="Login"
               btnVariant={activeView === "login" ? "primary" : "secondary"}
               size="md"
+              customStyle="!w-full"
               onBtnClick={() => setActiveView("login")}
             />
 
@@ -49,6 +38,7 @@ function Authentication() {
               btnTitle="Sign Up"
               btnVariant={activeView === "signup" ? "primary" : "secondary"}
               size="md"
+              customStyle="!w-full"
               onBtnClick={() => setActiveView("signup")}
             />
           </div>
