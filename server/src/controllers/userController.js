@@ -1,5 +1,6 @@
 import User from "./../models/UserModel.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const userRegister = async (req, res) => {
   try {
@@ -91,6 +92,7 @@ const userLogin = async (req, res) => {
         message: "Email and Password required",
       });
     }
+
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res.status(404).json({
@@ -103,12 +105,24 @@ const userLogin = async (req, res) => {
       password,
       existingUser.password
     );
+
     if (!isPasswordVald) {
       return res.status(401).json({
         success: false,
         message: "Invalid password",
       });
     }
+
+    const token = jwt.sign(
+      {
+        id: existingUser._id,
+        userName: existingUser.userName,
+        email: existingUser.email,
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "1d" }
+    );
+
     return res.status(200).json({
       success: true,
       message: "Login successful",
@@ -116,6 +130,7 @@ const userLogin = async (req, res) => {
         id: existingUser._id,
         fullName: existingUser.fullName,
         email: existingUser.email,
+        token,
       },
     });
   } catch (error) {
