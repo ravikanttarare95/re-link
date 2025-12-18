@@ -2,7 +2,7 @@
 
 function BrandLogo({ customStyle }: { customStyle?: string }) {
   return (
-    <div className={`max-w-6xl mx-auto flex items-center gap-4 ${customStyle}`}>
+    <div className={`max-w-6xl flex items-center gap-4 ${customStyle}`}>
       <img
         src="/re-link-logo.svg"
         alt="ReLink Logo"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../Button";
+import Button from "./../Button";
 import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
@@ -27,11 +27,13 @@ function SignUpForm() {
       !signUpData.password ||
       !signUpData.confirmPassword
     ) {
-      return toast.error("Please fill in all required fields.");
+      return toast.error("Please fill in all required fields.", {
+        id: "Sign-up-error",
+      });
     }
 
     if (signUpData.password !== signUpData.confirmPassword) {
-      return toast.error("Passwords do not match.");
+      return toast.error("Passwords do not match.", { id: "Sign-up-error" });
     }
 
     isDisabled = !signUpData.email || !signUpData.password;
@@ -39,7 +41,7 @@ function SignUpForm() {
 
   return (
     <form
-      className="space-y-5 md:overflow-auto md:h-[370px]"
+      className="space-y-5 md:overflow-auto px-0.5 md:h-[306px]"
       onSubmit={handleSignUp}
     >
       <div className="space-y-1">

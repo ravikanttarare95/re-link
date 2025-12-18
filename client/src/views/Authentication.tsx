@@ -4,15 +4,15 @@ import BrandLogo from "./../components/BrandLogo";
 import AuthPanelContent from "./../components/authentication/AuthPanelContent";
 import { authPanelContent } from "./../constants/authentication/authPanelContent.ts";
 import { type AuthView } from "./../constants/authentication/authPanelContent.ts";
-import LoginForm from "../components/authentication/LoginForm.tsx";
-import SignUpForm from "../components/authentication/SignUpForm.tsx";
+import LoginForm from "./../components/authentication/LoginForm.tsx";
+import SignUpForm from "./../components/authentication/SignUpForm.tsx";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6 space-y-10">
-      <BrandLogo />
+      <BrandLogo customStyle="max-md:!mr-auto" />
 
       <div className="flex rounded-3xl shadow-2xl overflow-hidden bg-white max-w-3xl w-full">
         <div className="hidden md:flex w-80 bg-gradient-to-t from-violet-400 to-pink-400 text-white p-8 items-center justify-center">

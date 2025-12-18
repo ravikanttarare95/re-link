@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../Button";
+import Button from "./../Button";
 import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
@@ -20,7 +20,9 @@ function LoginForm() {
   const handleLoginSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!loginData.email || !loginData.password) {
-      return toast.error("Please enter both email and password.");
+      return toast.error("Please enter both email and password.", {
+        id: "login-error",
+      });
     }
 
     isDisabled = !loginData.email || !loginData.password;

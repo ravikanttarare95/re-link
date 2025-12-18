@@ -8,10 +8,10 @@ function Homepage() {
 
   return (
     <>
-      <section className="min-h-screen bg-gray-50 px-6 py-8">
+      <section className="min-h-screen max-w-6xl mx-auto px-6 py-8">
         <BrandLogo />
 
-        <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-14 items-center">
+        <div className="  mt-12 grid md:grid-cols-2 gap-14 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               Reconnect through{" "}

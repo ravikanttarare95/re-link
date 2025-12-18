@@ -33,7 +33,7 @@ const Input = ({
   return (
     <div className="relative">
       <input
-        // tabIndex={0}
+        tabIndex={0}
         type={inputType}
         id={id}
         name={name}
