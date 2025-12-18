@@ -1,12 +1,16 @@
 import Button from "./../../components/Button";
 import Input from "./Input";
+import Label from "./Label";
 
 function LoginForm() {
   return (
     <form className="space-y-5">
+      {/* Email */}
       <div className="space-y-1">
+        <Label htmlFor={"input-email"} labelTitle={"Email address:"} />
+
         <Input
-          id="email"
+          id="input-email"
           type="email"
           placeholder="you@example.com"
           value={"email"}
@@ -14,7 +18,10 @@ function LoginForm() {
         />
       </div>
 
+      {/* Password */}
       <div className="space-y-1">
+        <Label htmlFor={"input-password"} labelTitle={"Password"} />
+
         <Input
           id="password"
           type="password"
@@ -24,6 +31,7 @@ function LoginForm() {
         />
       </div>
 
+      {/* Buttons */}
       <div className="space-y-3 pt-2">
         <Button
           type="submit"
