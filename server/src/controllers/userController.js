@@ -81,6 +81,49 @@ const userRegister = async (req, res) => {
   }
 };
 
-const userLogin = async (req, res) => {};
+const userLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({
+        success: false,
+        message: "Email and Password required",
+      });
+    }
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found or invalid email",
+      });
+    }
+
+    const isPasswordVald = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
+    if (!isPasswordVald) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid password",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: existingUser._id,
+        fullName: existingUser.fullName,
+        email: existingUser.email,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error during login",
+    });
+  }
+};
 
 export { userRegister, userLogin };
