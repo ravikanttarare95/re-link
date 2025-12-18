@@ -1,37 +1,45 @@
+import { useState } from "react";
 import Button from "./../../components/Button";
 import Input from "./Input";
 import Label from "./Label";
 
 function LoginForm() {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <form className="space-y-5">
-      {/* Email */}
       <div className="space-y-1">
         <Label htmlFor={"input-email"} labelTitle={"Email address:"} />
-
         <Input
           id="input-email"
           type="email"
+          name="email"
           placeholder="you@example.com"
-          value={"email"}
-          onInputChange={() => {}}
+          value={loginData.email}
+          onInputChange={handleInputChange}
         />
       </div>
 
-      {/* Password */}
       <div className="space-y-1">
         <Label htmlFor={"input-password"} labelTitle={"Password"} />
-
         <Input
-          id="password"
+          id="input-password"
           type="password"
+          name="password"
           placeholder="••••••••"
-          value={"password"}
-          onInputChange={() => {}}
+          value={loginData.password}
+          onInputChange={handleInputChange}
         />
       </div>
 
-      {/* Buttons */}
       <div className="space-y-3 pt-2">
         <Button
           type="submit"
