@@ -4,7 +4,8 @@ import BrandLogo from "./../components/BrandLogo";
 import AuthPanelContent from "./../components/authentication/AuthPanelContent";
 import { authPanelContent } from "./../constants/authentication/authPanelContent.ts";
 import { type AuthView } from "./../constants/authentication/authPanelContent.ts";
-import LoginForm from "../components/authentication/Login.tsx";
+import LoginForm from "../components/authentication/LoginForm.tsx";
+import SignUpForm from "../components/authentication/SignUpForm.tsx";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
@@ -14,7 +15,7 @@ function Authentication() {
       <BrandLogo />
 
       <div className="flex rounded-3xl shadow-2xl overflow-hidden bg-white max-w-3xl w-full">
-        <div className="hidden md:flex w-80 bg-linear-to-t from-violet-400 to-pink-400 text-white p-8 items-center justify-center">
+        <div className="hidden md:flex w-80 bg-gradient-to-t from-violet-400 to-pink-400 text-white p-8 items-center justify-center">
           <div className="space-y-4 text-center">
             <AuthPanelContent
               title={authPanelContent[activeView].title}
@@ -48,11 +49,7 @@ function Authentication() {
 
           {activeView === "login" && <LoginForm />}
 
-          {activeView === "signup" && (
-            <div className="h-28 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
-              Sign Up Form
-            </div>
-          )}
+          {activeView === "signup" && <SignUpForm />}
         </div>
       </div>
     </div>

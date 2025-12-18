@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "./../../components/Button";
+import Button from "../Button";
 import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
