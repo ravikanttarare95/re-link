@@ -3,7 +3,7 @@ import Button from "./../Button";
 import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
-
+import axios from "axios";
 function SignUpForm() {
   const [signUpData, setSignUpData] = useState({
     userName: "",
@@ -19,7 +19,7 @@ function SignUpForm() {
     setSignUpData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSignUp = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       !signUpData.userName ||
@@ -33,10 +33,38 @@ function SignUpForm() {
     }
 
     if (signUpData.password !== signUpData.confirmPassword) {
-      return toast.error("Passwords do not match.", { id: "Sign-up-error" });
+      return toast.error("Passwords did not match.", { id: "registration-error" });
     }
 
-    isDisabled = !signUpData.email || !signUpData.password;
+    isDisabled =
+      !signUpData.userName ||
+      !signUpData.email ||
+      !signUpData.password ||
+      !signUpData.confirmPassword;
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URI}/api/users/register`,
+        signUpData
+      );
+      if (response) {
+        toast.success(response?.data?.message, { id: "Registration-success" });
+        setSignUpData({
+          userName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error?.response?.data?.message || "Registration failed", {
+          id: "registration-error",
+        });
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
   };
 
   return (

@@ -3,8 +3,8 @@ import bcrypt from "bcrypt";
 
 const userRegister = async (req, res) => {
   try {
-    const { userName, email, password, pic, confirmPassword } = req.body;
-    if (!userName || !email || !password || !pic) {
+    const { userName, email, password, confirmPassword } = req.body;
+    if (!userName || !email || !password || !confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All the fields required",
@@ -63,7 +63,6 @@ const userRegister = async (req, res) => {
       userName,
       email,
       password: hashedPassword,
-      pic,
     });
 
     await newUser.save();
