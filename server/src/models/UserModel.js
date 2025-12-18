@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const userSchema = new Schema(
   {
-    name: {
+    userName: {
       type: String,
       required: true,
     },
@@ -17,7 +17,7 @@ const userSchema = new Schema(
     pic: {
       type: String,
       required: true,
-      default: "",
+      default: "https://ik.imagekit.io/vby7pddwy/my-photo_Wcc37_l6h.png",
     },
   },
   { timestamps: true }
