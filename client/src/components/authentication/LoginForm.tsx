@@ -3,12 +3,15 @@ import Button from "./../Button";
 import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function LoginForm() {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   let isDisabled;
 
@@ -17,7 +20,7 @@ function LoginForm() {
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLoginSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleLoginSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!loginData.email || !loginData.password) {
       return toast.error("Please enter both email and password.", {
@@ -25,6 +28,39 @@ function LoginForm() {
       });
     }
 
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URI}/api/users/login`,
+        {
+          email: loginData.email,
+          password: loginData.password,
+        }
+      );
+
+      if (response?.data?.success) {
+        toast.success(response?.data?.message, { id: "login-success" });
+        if (response?.data?.user) {
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(response.data.user)
+          );
+          localStorage.setItem("token", JSON.stringify(response.data.token));
+        }
+        setLoginData({
+          email: "",
+          password: "",
+        });
+        setTimeout(() => {
+          navigate("/chat");
+        }, 1000);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return toast.error(error?.response?.data?.message, {
+          id: "login-error",
+        });
+      }
+    }
     isDisabled = !loginData.email || !loginData.password;
   };
 

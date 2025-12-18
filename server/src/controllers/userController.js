@@ -130,8 +130,8 @@ const userLogin = async (req, res) => {
         id: existingUser._id,
         fullName: existingUser.fullName,
         email: existingUser.email,
-        token,
       },
+      token,
     });
   } catch (error) {
     return res.status(500).json({
