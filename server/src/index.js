@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+import connectDB from "./configs/db.js";
 
 const app = express();
 app.use(cors());
@@ -14,5 +15,6 @@ app.get("/", (_, res) => {
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`\n 📞 Server is listening on port ${PORT} \n`);
+  console.log(`\n📞 Server is listening on port ${PORT} \n`);
+  connectDB();
 });
