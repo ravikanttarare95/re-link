@@ -5,6 +5,7 @@ dotenv.config();
 import connectDB from "./configs/db.js";
 
 import userRouter from "./routes/userRoutes.js";
+import imagekitRouter from "./routes/imagekitRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.get("/", (_, res) => {
 });
 
 app.use("/api/users", userRouter);
+app.use("/api/imagekit", imagekitRouter);
 
 const PORT = process.env.PORT || 8080;
 
