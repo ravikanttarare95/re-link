@@ -87,7 +87,7 @@ const userLogin = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Email and Password required",
       });
@@ -113,6 +113,13 @@ const userLogin = async (req, res) => {
       });
     }
 
+    if (!process.env.JWT_SECRET_KEY) {
+      return res.status(500).json({
+        success: false,
+        message: "JWT secret key not configured",
+      });
+    }
+
     const token = jwt.sign(
       {
         id: existingUser._id,
@@ -122,6 +129,13 @@ const userLogin = async (req, res) => {
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1d" }
     );
+
+    if (!token) {
+      return json.status().res({
+        success: false,
+        message: "",
+      });
+    }
 
     return res.status(200).json({
       success: true,
@@ -134,6 +148,7 @@ const userLogin = async (req, res) => {
       token,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error during login",
