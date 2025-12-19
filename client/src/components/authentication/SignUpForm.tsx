@@ -21,6 +21,10 @@ function SignUpForm() {
     setSignUpData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // const handleAuthenticator = async () => {
+  //   const response= await axios.post
+  // };
+
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
@@ -99,7 +103,7 @@ function SignUpForm() {
       <IKContext
         publicKey={import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY}
         urlEndpoint={import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT}
-        // authenticator={authenticator}
+        // authenticator={handleAuthenticator}
       >
         <Label htmlFor={"input-email"} labelTitle={"Upload Profile Photo:"} />
 
