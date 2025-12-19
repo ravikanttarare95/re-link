@@ -4,6 +4,8 @@ import Input from "./Input";
 import Label from "./Label";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { IKContext, IKUpload } from "imagekitio-react";
+
 function SignUpForm() {
   const [signUpData, setSignUpData] = useState({
     userName: "",
@@ -33,7 +35,9 @@ function SignUpForm() {
     }
 
     if (signUpData.password !== signUpData.confirmPassword) {
-      return toast.error("Passwords did not match.", { id: "registration-error" });
+      return toast.error("Passwords did not match.", {
+        id: "registration-error",
+      });
     }
 
     isDisabled =
@@ -68,10 +72,7 @@ function SignUpForm() {
   };
 
   return (
-    <form
-      className="space-y-5 md:overflow-auto px-0.5 md:h-[306px]"
-      onSubmit={handleSignUp}
-    >
+    <form className="space-y-5" onSubmit={handleSignUp}>
       <div className="space-y-1">
         <Label htmlFor={"input-userName"} labelTitle={"Enter Your Name:"} />
         <Input
@@ -95,8 +96,34 @@ function SignUpForm() {
         />
       </div>
 
+      <IKContext
+        publicKey={import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY}
+        urlEndpoint={import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT}
+        // authenticator={authenticator}
+      >
+        <Label htmlFor={"input-email"} labelTitle={"Upload Profile Photo:"} />
+
+        <div className="flex items-center gap-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 bg-gray-50 overflow-hidden shadow-sm shrink-0">
+            <img
+              src=""
+              alt="Profile Photo"
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+
+          <IKUpload
+            fileName="file-name.jpg"
+            isPrivateFile={false}
+            useUniqueFileName={true}
+            checks={`"file.size" < "1mb"`}
+            className="max-w-60 w-full text-sm text-gray-600 cursor-pointer transition file:px-3 file:py-1.5 file:mr-3 file:rounded-lg file:border file:border-gray-300 file:bg-gray-100 hover:file:bg-gray-200 file:text-sm file:font-medium file:cursor-pointer"
+          />
+        </div>
+      </IKContext>
+
       <div className="space-y-1">
-        <Label htmlFor={"input-password"} labelTitle={"Password"} />
+        <Label htmlFor={"input-password"} labelTitle={"Password:"} />
         <Input
           id="input-password"
           type="password"
@@ -110,7 +137,7 @@ function SignUpForm() {
       <div className="space-y-1">
         <Label
           htmlFor={"input-confirm-password"}
-          labelTitle={"Re-Enter Password"}
+          labelTitle={"Re-Enter Password:"}
         />
         <Input
           id="input-confirm-password"

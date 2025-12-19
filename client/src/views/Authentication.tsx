@@ -12,7 +12,7 @@ function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
 
   return (
-    <div className="min-h-screen relative bg-gray-50 flex flex-col items-center p-6 space-y-10">
+    <div className="min-h-screen relative flex flex-col items-center p-6 space-y-10">
       <BrandLogo customStyle="max-md:!mr-auto" />
 
       <div className="flex rounded-3xl shadow-2xl overflow-hidden bg-white max-w-3xl w-full">
@@ -46,11 +46,10 @@ function Authentication() {
             />
           </div>
 
-          <div className="h-px bg-gray-200" />
-
-          {activeView === "login" && <LoginForm />}
-
-          {activeView === "signup" && <SignUpForm />}
+          <div className=" md:overflow-auto px-0 md:h-[306px]">
+            {activeView === "login" && <LoginForm />}
+            {activeView === "signup" && <SignUpForm />}
+          </div>
         </div>
       </div>
       <FloatingIcons />
