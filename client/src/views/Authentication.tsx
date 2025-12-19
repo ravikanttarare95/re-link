@@ -6,12 +6,13 @@ import { authPanelContent } from "./../constants/authentication/authPanelContent
 import { type AuthView } from "./../constants/authentication/authPanelContent.ts";
 import LoginForm from "./../components/authentication/LoginForm.tsx";
 import SignUpForm from "./../components/authentication/SignUpForm.tsx";
+import FloatingIcons from "./../components/FloatingIcons";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6 space-y-10">
+    <div className="min-h-screen relative bg-gray-50 flex flex-col items-center p-6 space-y-10">
       <BrandLogo customStyle="max-md:!mr-auto" />
 
       <div className="flex rounded-3xl shadow-2xl overflow-hidden bg-white max-w-3xl w-full">
@@ -52,6 +53,7 @@ function Authentication() {
           {activeView === "signup" && <SignUpForm />}
         </div>
       </div>
+      <FloatingIcons />
     </div>
   );
 }
