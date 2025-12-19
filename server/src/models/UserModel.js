@@ -14,10 +14,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    pic: {
+    userPhotoUrl: {
       type: String,
-      required: true,
-      default: "https://ik.imagekit.io/vby7pddwy/my-photo_Wcc37_l6h.png",
+      default:
+        "https://ik.imagekit.io/vby7pddwy/user_puMsmkK3A.png?updatedAt=1766154755494",
     },
   },
   { timestamps: true }

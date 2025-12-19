@@ -6,10 +6,13 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { IKContext, IKUpload } from "imagekitio-react";
 
+import userImg from "./../../assets/auth-images/user.png";
+
 function SignUpForm() {
   const [signUpData, setSignUpData] = useState({
     userName: "",
     email: "",
+    userPhotoUrl: "",
     password: "",
     confirmPassword: "",
   });
@@ -21,9 +24,31 @@ function SignUpForm() {
     setSignUpData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleAuthenticator = async () => {
-  //   const response= await axios.post
-  // };
+  const handleAuthenticator = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URI}/api/imagekit/auth`
+    );
+
+    if (response) {
+      return response?.data;
+    }
+  };
+
+  const onUploadProgress = (evt: ProgressEvent<XMLHttpRequestUpload>): void => {
+    console.log(evt);
+    toast.loading("Image Uploading...", { id: "img-uploading" });
+  };
+  const onError = (err: unknown): void => {
+    console.log(typeof err);
+    toast.error("Error uploading image");
+  };
+
+  const onSuccess = (res: { url: string }): void => {
+    setSignUpData((prev) => ({ ...prev, userPhotoUrl: res.url }));
+    console.log(res);
+    toast.dismiss("img-uploading");
+    toast.success("Image uploaded");
+  };
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,6 +85,7 @@ function SignUpForm() {
         setSignUpData({
           userName: "",
           email: "",
+          userPhotoUrl: userImg,
           password: "",
           confirmPassword: "",
         });
@@ -103,22 +129,23 @@ function SignUpForm() {
       <IKContext
         publicKey={import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY}
         urlEndpoint={import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT}
-        // authenticator={handleAuthenticator}
+        authenticator={handleAuthenticator}
       >
         <Label htmlFor={"input-email"} labelTitle={"Upload Profile Photo:"} />
 
         <div className="flex items-center gap-4">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 bg-gray-50 overflow-hidden shadow-sm shrink-0">
             <img
-              src=""
+              src={signUpData.userPhotoUrl || userImg}
               alt="Profile Photo"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover rounded-full bg-gray-300"
             />
           </div>
 
           <IKUpload
-            fileName="file-name.jpg"
-            isPrivateFile={false}
+            onError={onError}
+            onSuccess={onSuccess}
+            onUploadProgress={onUploadProgress}
             useUniqueFileName={true}
             checks={`"file.size" < "1mb"`}
             className="max-w-60 w-full text-sm text-gray-600 cursor-pointer transition file:px-3 file:py-1.5 file:mr-3 file:rounded-lg file:border file:border-gray-300 file:bg-gray-100 hover:file:bg-gray-200 file:text-sm file:font-medium file:cursor-pointer"

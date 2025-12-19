@@ -1,4 +1,4 @@
-import photokit from "./../configs/photokit";
+import photokit from "./../configs/photokit.js";
 
 const getImageKitAuth = (req, res) => {
   const imagekitAuthParams = photokit.getAuthenticationParameters();

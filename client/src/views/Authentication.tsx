@@ -46,7 +46,7 @@ function Authentication() {
             />
           </div>
 
-          <div className=" md:overflow-auto px-0 md:h-[306px]">
+          <div className=" md:overflow-auto px-1 md:h-[306px]">
             {activeView === "login" && <LoginForm />}
             {activeView === "signup" && <SignUpForm />}
           </div>
