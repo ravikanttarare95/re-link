@@ -67,7 +67,11 @@ function LoginForm() {
   return (
     <form className="space-y-5" onSubmit={handleLoginSubmit}>
       <div className="space-y-1">
-        <Label htmlFor={"input-email"} labelTitle={"Email address:"} />
+        <Label
+          htmlFor={"input-email"}
+          labelTitle={"Email address"}
+          isMandatory={true}
+        />
         <Input
           id="input-email"
           type="email"
@@ -79,7 +83,11 @@ function LoginForm() {
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor={"input-password"} labelTitle={"Password"} />
+        <Label
+          htmlFor={"input-password"}
+          labelTitle={"Password"}
+          isMandatory={true}
+        />
         <Input
           id="input-password"
           type="password"

@@ -104,7 +104,11 @@ function SignUpForm() {
   return (
     <form className="space-y-5" onSubmit={handleSignUp}>
       <div className="space-y-1">
-        <Label htmlFor={"input-userName"} labelTitle={"Enter Your Name:"} />
+        <Label
+          htmlFor={"input-userName"}
+          labelTitle={"Enter Your Name"}
+          isMandatory={true}
+        />
         <Input
           id="input-userName"
           type="text"
@@ -115,12 +119,16 @@ function SignUpForm() {
         />
       </div>
       <div className="space-y-1">
-        <Label htmlFor={"input-email"} labelTitle={"Email address:"} />
+        <Label
+          htmlFor={"input-email"}
+          labelTitle={"Email address"}
+          isMandatory={true}
+        />
         <Input
           id="input-email"
           type="email"
           name="email"
-          placeholder="you@example.com"
+          placeholder="ravikant123@gmail.com"
           value={signUpData.email}
           onInputChange={handleInputChange}
         />
@@ -148,13 +156,17 @@ function SignUpForm() {
             onUploadProgress={onUploadProgress}
             useUniqueFileName={true}
             checks={`"file.size" < "1mb"`}
-            className="max-w-60 w-full text-sm text-gray-600 cursor-pointer transition file:px-3 file:py-1.5 file:mr-3 file:rounded-lg file:border file:border-gray-300 file:bg-gray-100 hover:file:bg-gray-200 file:text-sm file:font-medium file:cursor-pointer"
+            className="max-w-60 w-full border border-gray-100 hover:border-gray-200 rounded-lg text-sm text-gray-600 cursor-pointer file:transition file:duration-300 transition duration-300 file:px-3 file:py-1.5 file:mr-3 file:rounded-lg file:border file:border-gray-300 file:bg-gray-100 hover:file:bg-gray-200 file:text-sm file:font-medium file:cursor-pointer"
           />
         </div>
       </IKContext>
 
       <div className="space-y-1">
-        <Label htmlFor={"input-password"} labelTitle={"Password:"} />
+        <Label
+          htmlFor={"input-password"}
+          labelTitle={"Password"}
+          isMandatory={true}
+        />
         <Input
           id="input-password"
           type="password"
@@ -168,7 +180,8 @@ function SignUpForm() {
       <div className="space-y-1">
         <Label
           htmlFor={"input-confirm-password"}
-          labelTitle={"Re-Enter Password:"}
+          labelTitle={"Re-Enter Password"}
+          isMandatory={true}
         />
         <Input
           id="input-confirm-password"
