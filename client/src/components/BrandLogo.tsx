@@ -1,8 +1,8 @@
-// import React from "react";
+import { Link } from "react-router";
 
 function BrandLogo({ customStyle }: { customStyle?: string }) {
   return (
-    <div className={`max-w-6xl flex items-center gap-4 ${customStyle}`}>
+    <Link to="/" className={`max-w-6xl flex items-center gap-4 ${customStyle}`}>
       <img
         src="/re-link-logo.svg"
         alt="ReLink Logo"
@@ -11,7 +11,7 @@ function BrandLogo({ customStyle }: { customStyle?: string }) {
       <span className="text-3xl font-bold tracking-tight text-gray-900">
         ReLink
       </span>
-    </div>
+    </Link>
   );
 }
 
