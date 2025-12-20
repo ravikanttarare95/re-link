@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (_, res) => {
-  res.json({ status: "OK", message: "Server is healthy." });
+  res.json({ success: true, status: "OK", message: "Server is healthy." });
 });
 
 app.use("/api/users", userRouter);

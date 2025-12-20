@@ -7,10 +7,22 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { BiChat } from "react-icons/bi";
 import { GrChatOption } from "react-icons/gr";
 import { BsChatRightText } from "react-icons/bs";
+import axios from "axios";
+import { useEffect } from "react";
 
 function Homepage() {
   const navigate = useNavigate();
 
+  const checkHealth = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URI}/`);
+    if (response) {
+      console.log(response.data);
+    }
+  };
+
+  useEffect(() => {
+    checkHealth();
+  }, []);
   return (
     <>
       <section className="min-h-screen max-w-6xl mx-auto p-6">
