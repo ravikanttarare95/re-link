@@ -7,11 +7,13 @@ import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRoutes.js";
 import imagekitRouter from "./routes/imagekitRoutes.js";
 
+import jwtCheck from "./midddlewares/jwt-check.js";
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (_, res) => {
+app.get("/", jwtCheck, (_, res) => {
   res.json({ success: true, status: "OK", message: "Server is healthy." });
 });
 

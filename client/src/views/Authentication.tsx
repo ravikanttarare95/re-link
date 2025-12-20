@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./../components/Button";
 import BrandLogo from "./../components/BrandLogo";
 import AuthPanelContent from "./../components/authentication/AuthPanelContent";
@@ -6,11 +6,21 @@ import { authPanelContent } from "./../constants/authentication/authPanelContent
 import { type AuthView } from "./../constants/authentication/authPanelContent.ts";
 import LoginForm from "./../components/authentication/LoginForm.tsx";
 import SignUpForm from "./../components/authentication/SignUpForm.tsx";
-import FloatingIcons from "./../components/FloatingIcons";
+import FloatingIcons from "./../components/animations/FloatingIcons.tsx";
+import getLoggedInUser from "./../utils/getLoggedInUser.ts";
+import { useNavigate } from "react-router";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = getLoggedInUser();
+
+    if (user) {
+      navigate("/chat", { replace: true });
+    }
+  });
   return (
     <div className="min-h-screen relative flex flex-col items-center p-6 space-y-10">
       <BrandLogo customStyle="max-md:!mr-auto" />

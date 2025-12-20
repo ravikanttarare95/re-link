@@ -27,7 +27,6 @@ const floatWithDelay = (delay: number): MotionProps => ({
 function FloatingIcons() {
   return (
     <>
-      {/* Top Far Left */}
       <motion.span
         {...floatWithDelay(0)}
         className="hidden md:block absolute top-10 left-6 text-4xl text-pink-500/85 rotate-12"
@@ -35,7 +34,6 @@ function FloatingIcons() {
         <HiOutlineChatBubbleLeftRight />
       </motion.span>
 
-      {/* Top Center */}
       <motion.span
         {...floatWithDelay(0.4)}
         className="hidden md:block absolute bottom-36 right-40 text-3xl text-violet-500/80 -rotate-6"
@@ -43,7 +41,6 @@ function FloatingIcons() {
         <BsChatRightText />
       </motion.span>
 
-      {/* Top Far Right */}
       <motion.span
         {...floatWithDelay(0.8)}
         className="hidden md:block absolute top-12 right-6 text-4xl text-violet-500/75 rotate-12"
@@ -51,7 +48,6 @@ function FloatingIcons() {
         <MdOutlineForum />
       </motion.span>
 
-      {/* Upper Left Depth */}
       <motion.span
         {...floatWithDelay(1.2)}
         className="hidden md:block absolute top-1/4 left-32 text-4xl text-violet-500/75 -rotate-12"
@@ -59,7 +55,6 @@ function FloatingIcons() {
         <RiChatSmile2Line />
       </motion.span>
 
-      {/* Upper Right Depth */}
       <motion.span
         {...floatWithDelay(1.6)}
         className="hidden lg:block absolute top-1/4 right-32 text-4xl text-pink-500/85 rotate-6"
@@ -67,7 +62,6 @@ function FloatingIcons() {
         <GrChatOption />
       </motion.span>
 
-      {/* Center Left */}
       <motion.span
         {...floatWithDelay(2)}
         className="hidden md:block absolute top-1/2 left-12 text-4xl text-pink-500/90 rotate-12"
@@ -75,7 +69,6 @@ function FloatingIcons() {
         <BiChat />
       </motion.span>
 
-      {/* Center Right */}
       <motion.span
         {...floatWithDelay(2.4)}
         className="hidden lg:block absolute top-1/2 right-12 text-3xl text-violet-500/85 -rotate-12"
@@ -83,7 +76,6 @@ function FloatingIcons() {
         <FaRegCommentDots />
       </motion.span>
 
-      {/* Lower Left */}
       <motion.span
         {...floatWithDelay(2.8)}
         className="hidden md:block absolute bottom-0 left-20 text-4xl text-violet-500/80 rotate-6"
@@ -91,7 +83,6 @@ function FloatingIcons() {
         <TbMessageCircle />
       </motion.span>
 
-      {/* Bottom Center */}
       <motion.span
         {...floatWithDelay(3.2)}
         className="hidden md:block absolute bottom-40 left-52 text-4xl text-pink-500/75 -rotate-6"
@@ -99,7 +90,6 @@ function FloatingIcons() {
         <PiChatsCircle />
       </motion.span>
 
-      {/* Bottom Far Right */}
       <motion.span
         {...floatWithDelay(3.6)}
         className="hidden md:block absolute bottom-8 right-20 text-4xl text-pink-500/80 rotate-20"
