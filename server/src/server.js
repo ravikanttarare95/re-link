@@ -10,6 +10,10 @@ import chatRouter from "./routes/chatRoutes.js";
 
 import jwtCheck from "./midddlewares/jwt-check.js";
 
+import { createServer } from "http";
+import { Server } from "socket.io";
+import { initSocket } from "./sockets/index.js";
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -23,6 +27,14 @@ app.use("/api/imagekit", imagekitRouter);
 app.use("/chats", jwtCheck, chatRouter);
 
 const PORT = process.env.PORT || 8080;
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  cors: { origin: "*" },
+});
+
+initSocket(io);
 
 app.listen(PORT, () => {
   console.log(`\n📞 Server is listening on port ${PORT}`);

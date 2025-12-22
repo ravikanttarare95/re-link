@@ -1,4 +1,4 @@
-import { Socket } from "socket.io";
+// import { Socket } from "socket.io";
 import jwt from "jsonwebtoken";
 
 const socketAuth = (Socket, next) => {
@@ -16,3 +16,5 @@ const socketAuth = (Socket, next) => {
     next(new Error("Invalid token"));
   }
 };
+
+export { socketAuth };
