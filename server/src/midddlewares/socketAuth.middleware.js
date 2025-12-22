@@ -1,19 +1,22 @@
-// import { Socket } from "socket.io";
 import jwt from "jsonwebtoken";
 
-const socketAuth = (Socket, next) => {
+const socketAuth = (socket, next) => {
   try {
-    const token = Socket.handshake.auth?.token;
+    const token = socket.handshake.auth?.token;
     if (!token) {
-      return next(new Error("Unauthorized"));
+      return next(new Error("Authentication error: Token missing"));
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    Socket.userId = decoded.userId;
+    socket.data.user = {
+      userId: decoded.userId,
+      email: decoded.email,
+      name: decoded.name,
+    };
     next();
   } catch (error) {
-    next(new Error("Invalid token"));
+    next(new Error("Authentication error: Invalid token"));
   }
 };
 
