@@ -1,4 +1,4 @@
-import { socketAuth } from "./../midddlewares/socketAuth.middleware.js";
+import { socketAuth } from "../midddlewares/socketAuth.middleware.js";
 
 const initSocket = (io) => {
   io.use(socketAuth);

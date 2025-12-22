@@ -5,10 +5,9 @@ import {
   fetchChat,
   createGroupChat,
   renameGroup,
+  removeFromGroup,
   addToGroup,
-  removeFromChat,
 } from "./../controllers/chatControllers.js";
-
 const router = express.Router();
 
 router.post("/", accessChat);
@@ -21,6 +20,6 @@ router.put("/rename", renameGroup);
 
 router.put("/addgroup", addToGroup);
 
-router.put("/removegroup", removeFromChat);
+router.put("/removegroup", removeFromGroup);
 
 export default router;

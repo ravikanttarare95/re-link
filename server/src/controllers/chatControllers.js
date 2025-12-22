@@ -18,4 +18,11 @@ const removeFromGroup = async (req, res) => {
 const addToGroup = async (req, res) => {
   sd;
 };
-export { accessChat };
+export {
+  accessChat,
+  fetchChat,
+  createGroupChat,
+  renameGroup,
+  removeFromGroup,
+  addToGroup,
+};

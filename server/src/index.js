@@ -12,7 +12,7 @@ import jwtCheck from "./midddlewares/jwt-check.js";
 
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { initSocket } from "./sockets/index.js";
+import { initSocket } from "./sockets/socket.js";
 
 const app = express();
 app.use(cors());

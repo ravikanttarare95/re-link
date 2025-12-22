@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 
 function Authentication() {
   const [activeView, setActiveView] = useState<AuthView>("login");
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,8 +20,12 @@ function Authentication() {
 
     if (user) {
       navigate("/chat", { replace: true });
+    } else {
+      setCheckingAuth(false);
     }
-  });
+  }, []);
+
+  if (checkingAuth) return null;
   return (
     <div className="min-h-screen relative flex flex-col items-center p-6 space-y-10">
       <BrandLogo customStyle="max-md:!mr-auto" />
