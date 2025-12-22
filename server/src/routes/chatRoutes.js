@@ -1,17 +1,26 @@
 import express from "express";
 import jwtCheck from "./../midddlewares/jwt-check.js";
+import {
+  accessChat,
+  fetchChat,
+  createGroupChat,
+  renameGroup,
+  addToGroup,
+  removeFromChat,
+} from "./../controllers/chatControllers.js";
+
 const router = express.Router();
 
-router.post("/", jwtCheck, accessChat);
+router.post("/", accessChat);
 
-router.get("/", jwtCheck, fetchChat);
+router.get("/", fetchChat);
 
-router.post("/group", jwtCheck, createGroupChat);
+router.post("/group", createGroupChat);
 
-router.put("/rename", jwtCheck, renameGroup);
+router.put("/rename", renameGroup);
 
-router.put("/addgroup", jwtCheck, addToGroup);
+router.put("/addgroup", addToGroup);
 
-router.put("/removegroup", jwtCheck, removeFromChat);
+router.put("/removegroup", removeFromChat);
 
 export default router;
