@@ -19,6 +19,11 @@ const userSchema = new Schema(
       default:
         "https://ik.imagekit.io/vby7pddwy/user_puMsmkK3A.png?updatedAt=1766154755494",
     },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   { timestamps: true }
 );
