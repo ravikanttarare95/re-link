@@ -2,11 +2,31 @@ import User from "./../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const allUsers = async (req, res) => {
+  const searchWord = req.query.search
+    ? {
+        $or: [
+          { userName: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+  const users = await User.find(searchWord).find({
+    _id: { $ne: req.user.id },
+  });
+
+  res.json({
+    success: true,
+    message: "Users fetched successfull",
+    data: users,
+  });
+};
+
 const userRegister = async (req, res) => {
   try {
     const { userName, email, userPhotoUrl, password, confirmPassword } =
       req.body;
-    if (!userName || !email || !userPhotoUrl || !password || !confirmPassword) {
+    if (!userName || !email || !password || !confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All the fields required",
@@ -158,4 +178,4 @@ const userLogin = async (req, res) => {
   }
 };
 
-export { userRegister, userLogin };
+export { userRegister, userLogin, allUsers };
